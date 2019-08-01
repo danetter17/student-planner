@@ -15,6 +15,8 @@ ActiveRecord::Schema.define(version: 2019_07_31_235039) do
   create_table "assignments", force: :cascade do |t|
     t.string "title"
     t.date "due_date"
+    t.integer "student_id"
+    t.integer "course_id"
   end
 
   create_table "courses", force: :cascade do |t|
