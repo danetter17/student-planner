@@ -4,8 +4,8 @@ class SessionsController < ApplicationController
 	end
 
 	def create
-		@student = Student.find_by(id: params[:user][:id])
-		@student = @student.try(:authenticate, params[:user][:password])
+		@student = Student.find_by(id: params[:student][:id])
+		@student = @student.try(:authenticate, params[:student][:password])
 		redirect_to root_path unless @student
 		session[:student_id] = @student.id
 		redirect_to student_path(@student)
