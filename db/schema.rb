@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 2019_07_31_235039) do
   end
 
   create_table "courses", force: :cascade do |t|
-    t.string "school_name"
+    t.string "course_name"
     t.string "instructor"
   end
 
