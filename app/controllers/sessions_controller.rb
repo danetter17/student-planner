@@ -4,8 +4,6 @@ class SessionsController < ApplicationController
 	end
 
 	def create
-		#raise params.inspect
-		#binding.pry
 		@student = Student.find_by(email: params[:student][:email])
     if @student && @student.authenticate(params[:student][:password])
       session[:student_id] = @student.id
@@ -19,10 +17,4 @@ class SessionsController < ApplicationController
 		session.delete :student_id
 		redirect_to root_path
 	end
-
-  # private
-	#
-  # def student_params
-	# 	params.require(:student).permit(:name, :email, :password)
-	# end
 end
