@@ -7,11 +7,11 @@ Rails.application.routes.draw do
   get '/logout',  to: 'sessions#destroy'
 
   resources :students, only: [:show, :new, :create, :edit, :update]
+
   resources :students, only: [:show] do
     resources :assignments
-  end
-  resources :students, only: [:show] do
     resources :courses
   end
+
   root 'welcome#home'
 end

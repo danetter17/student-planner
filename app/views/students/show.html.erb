@@ -1,7 +1,13 @@
 <h1><%= @student.name %>'s User Dashboard</h1>
 <br>
+
 <h3>Assignment List</h3>
 <br>
+<%= link_to "Add Assignment", new_student_assignment_path(@student) %>
+
 <h3>Course List</h3>
 <br>
+<%= link_to "Add Course", new_student_course_path(@student) %>
+<br><br>
+
 <a href="/logout">Logout</a>
