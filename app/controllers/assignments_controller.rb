@@ -16,6 +16,7 @@ class AssignmentsController < ApplicationController
 
   def index
     @assignments = Assignment.where(student_id: params[:student_id])
+    #binding.pry
   end
 
   def show
