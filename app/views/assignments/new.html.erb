@@ -1,12 +1,12 @@
 <h2>Add a new assignment!</h2>
 
-<%= form_for(@assignment, url: new_student_assignment_path) do |f| %>
+<%= form_for(@assignment, url: student_assignments_path) do |f| %>
   <%= f.label "Title" %>
   <%= f.text_field :title %><br><br>
   <%= f.label "Due Date:" %>
   <%= f.date_select :due_date %><br><br>
   <%= f.label "Select Course:" %><br><br>
-  <%= f.collection_select :course, Course.all, :id, :course_name %><br><br>
+  <%= f.collection_select :course, Course.all, :course_id, :course_name %><br><br>
   <%= f.label "Or Create New Course:" %><br><br>
   <%= f.fields_for :courses, @student.courses.build do |courses_fields| %>
     <%= courses_fields.text_field :course_name %>

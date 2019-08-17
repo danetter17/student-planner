@@ -4,19 +4,23 @@ class AssignmentsController < ApplicationController
   end
 
   def create
-    @assignment = Assignment.new(assignment_params)
-
-    if @assignment.save
-      redirect_to student_assignment_path(@student)
+    @assignment = Assignment.create(assignment_params)
+    #binding.pry
+    #raise params.inspect
+    if @assignment
+      redirect_to student_assignments_path(@student)
     else
       render :new
     end
   end
 
   def index
+    @assignments = Assignment.where(student_id: params[:student_id])
   end
 
   def show
+    student = Student.find_by(id: params[:student_id])
+    @assignment = student.assignments.find_by(id: params[:id])
   end
 
   def edit
@@ -28,6 +32,6 @@ class AssignmentsController < ApplicationController
   private
 
     def assignment_params
-      params.require(:assignment).permit(:title, :due_date, :course_id, :student_id)
+      params.require(:assignment).permit(:title, :due_date, :course_id, :student_id, courses_attributes: [:course_name])
     end
 end
