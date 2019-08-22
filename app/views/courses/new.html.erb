@@ -3,7 +3,5 @@
 <%= form_for(@course, url: student_courses_path) do |f| %>
   <%= f.label "Course Name" %>
   <%= f.text_field :course_name %><br><br>
-  <%= f.label "Instructor" %>
-  <%= f.text_field :instructor %><br><br>
   <%= f.submit %>
 <% end %>

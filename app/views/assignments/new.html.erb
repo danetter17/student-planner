@@ -6,10 +6,11 @@
   <%= f.label "Due Date:" %>
   <%= f.date_select :due_date %><br><br>
   <%= f.label "Select Course:" %><br><br>
-  <%= f.collection_select :course, Course.all, :course_id, :course_name %><br><br>
+  <%= f.collection_select :course_id, Course.all, :id, :course_name, prompt: true %><br><br>
   <%= f.label "Or Create New Course:" %><br><br>
-  <%= f.fields_for :courses, @student.courses.build do |courses_fields| %>
-    <%= courses_fields.text_field :course_name %>
+  <%= f.fields_for :course, @assignment.build_course do |course_fields| %>
+    <%= course_fields.label :course_name %>
+    <%= course_fields.text_field :course_name %>
   <% end %><br><br>
   <%= f.submit %>
 <% end %>

@@ -14,7 +14,9 @@ class CoursesController < ApplicationController
   end
 
   def index
-    @courses = Course.where(student_id: params[:student_id])
+    student = Student.find_by(id: params[:student_id])
+    @courses = Course.all
+    #binding.pry
   end
 
   def show
