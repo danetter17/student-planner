@@ -1,13 +1,17 @@
 class AssignmentsController < ApplicationController
   def new
     @assignment = Assignment.new
-    @assignment.build_course
+    # if params[:course_id]
+    #         @course = Course.find_by(id: params[:course_id])
+    # end
+    # @assignment.build_course
   end
 
   def create
-    @assignment = Assignment.create(assignment_params)
-    @assignment.student_id = current_student.id if current_student
     binding.pry
+    @assignment = Assignment.new(assignment_params)
+    @assignment.student_id = current_student.id if current_student
+    #binding.pry
     #raise params.inspect
     if @assignment.save
       redirect_to student_assignments_path(@student)
