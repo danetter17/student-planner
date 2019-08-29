@@ -1,6 +1,7 @@
 <h2>Add a new assignment!</h2>
 
 <%= form_for(@assignment, url: student_assignments_path) do |f| %>
+  <%= f.hidden_field :student_id %>
   <%= f.label "Title" %>
   <%= f.text_field :title %><br><br>
   <%= f.label "Due Date:" %>
