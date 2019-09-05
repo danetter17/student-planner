@@ -6,7 +6,7 @@ class CoursesController < ApplicationController
   def create
     @course = Course.create(course_params)
 
-    if @course
+    if @course.save
       redirect_to student_courses_path(@student)
     else
       render :new
