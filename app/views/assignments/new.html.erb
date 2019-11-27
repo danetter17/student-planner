@@ -1,5 +1,5 @@
 <h2>Add a new assignment!</h2>
-<h3>To add an assignment to your planner, please create a course first</h3>
+<h3>To add an assignment to your planner, please select or <a href="<%= new_student_course_path %>">create</a> a course first</h3>
 
 <%= form_for(@assignment, url: student_assignments_path) do |f| %>
   <%= f.hidden_field :student_id %>
@@ -9,7 +9,6 @@
   <%= f.date_select :due_date %><br><br>
   <%= f.label "Select Course:" %><br><br>
   <%= f.collection_select :course_id, Course.all, :id, :course_name, prompt: true %><br><br>
-  <p>Or create a new course</p>
   <br><br>
   <%= f.fields_for :course do |course_fields| %>
     <%= course_fields.label :course_name %>
