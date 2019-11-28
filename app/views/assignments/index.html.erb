@@ -1,5 +1,7 @@
-<h2>Current Assignments</h2>
+<div class='container text-center'>
+  <h2>Current Assignments</h2>
 
-<% @student.assignments.all.each do |assignment| %>
-  <%= assignment.title %>, <%= assignment.course.course_name %>, <%= assignment.due_date %><br>
-<% end %><br>
+  <% @student.assignments.all.each do |assignment| %>
+    <%= assignment.title %>, <%= assignment.course.course_name %>, <%= assignment.due_date %><br>
+  <% end %><br>
+</div>

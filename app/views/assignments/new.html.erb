@@ -1,19 +1,15 @@
-<h2>Add a new assignment!</h2>
-<h3>To add an assignment to your planner, please select or <a href="<%= new_student_course_path %>">create</a> a course first</h3>
+<div class='container text-center'>
+  <h2>New Assignment Form</h2>
+  <h3>To add an assignment to your planner, please select or <a href="<%= new_student_course_path %>">create</a> a course first</h3>
 
-<%= form_for(@assignment, url: student_assignments_path) do |f| %>
-  <%= f.hidden_field :student_id %>
-  <%= f.label "Title" %>
-  <%= f.text_field :title %><br><br>
-  <%= f.label "Due Date:" %>
-  <%= f.date_select :due_date %><br><br>
-  <%= f.label "Select Course:" %><br><br>
-  <%= f.collection_select :course_id, Course.all, :id, :course_name, prompt: true %><br><br>
-  <br><br>
-  <%= f.fields_for :course do |course_fields| %>
-    <%= course_fields.label :course_name %>
-    <%= course_fields.text_field :course_name %>
-  <% end %>
-  <br><br>
-  <%= f.submit %>
-<% end %>
+  <%= form_for(@assignment, url: student_assignments_path) do |f| %>
+    <%= f.hidden_field :student_id %>
+    <%= f.label "Title" %>
+    <%= f.text_field :title %><br><br>
+    <%= f.label "Due Date:" %>
+    <%= f.date_select :due_date %><br><br>
+    <%= f.label "Select Course:" %>
+    <%= f.collection_select :course_id, Course.all, :id, :course_name, prompt: true %><br><br>
+    <%= f.submit %>
+    <% end %>
+</div>

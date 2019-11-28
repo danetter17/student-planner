@@ -1,7 +1,9 @@
-<h2>Add a new course!</h2>
+<div class='container text-center'>
+  <h2>Add A Course</h2>
 
-<%= form_for(@course, url: student_courses_path) do |f| %>
-  <%= f.label "Course Name" %>
-  <%= f.text_field :course_name %><br><br>
-  <%= f.submit %>
-<% end %>
+  <%= form_for(@course, url: student_courses_path) do |f| %>
+    <%= f.label "Course Name" %>
+    <%= f.text_field :course_name %><br><br>
+    <%= f.submit %>
+    <% end %>
+</div>

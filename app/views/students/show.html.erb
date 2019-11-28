@@ -1,15 +1,17 @@
-<h1><%= @student.name %>'s User Dashboard</h1>
-<br>
+<div class='container text-center'>
+  <h1><%= @student.name %>'s User Dashboard</h1>
+  <br>
 
-<h3>Assignment List</h3>
-<%= link_to "View Assignments", student_assignments_path(@student) %>
-<br>
-<%= link_to "Add Assignment", new_student_assignment_path(@student) %>
+  <h3>Assignment List</h3>
+  <%= link_to "View Assignments", student_assignments_path(@student) %>
+  <br>
+  <%= link_to "Add Assignment", new_student_assignment_path(@student) %>
 
-<h3>Your Schedule</h3>
-<%= link_to "View Courses", student_courses_path(@student) %>
-<br>
-<%= link_to "Add Course", new_student_course_path(@student) %>
-<br><br>
+  <h3>Your Schedule</h3>
+  <%= link_to "View Courses", student_courses_path(@student) %>
+  <br>
+  <%= link_to "Add Course", new_student_course_path(@student) %>
+  <br><br>
 
-<a href="/logout">Logout</a>
+  <a href="/logout">Logout</a>
+</div>

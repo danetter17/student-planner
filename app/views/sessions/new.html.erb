@@ -1,11 +1,13 @@
-<h3>Login</h3>
+<div class='container text-center'>
+  <h3>Login</h3>
 
-<%= form_for @student, url: login_path do |f| %>
-  <%= f.label :email %>
-  <%= f.text_field :email %><br>
+  <%= form_for @student, url: login_path do |f| %>
+    <%= f.label :email %>
+    <%= f.text_field :email %><br>
 
-  <%= f.label :password, "Password" %>
-  <%= f.password_field :password %><br>
+    <%= f.label :password, "Password" %>
+    <%= f.password_field :password %><br>
 
-  <%= f.submit "Login"%>
-<% end %>
+    <%= f.submit "Login"%>
+    <% end %>
+</div>

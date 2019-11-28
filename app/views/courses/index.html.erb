@@ -1,6 +1,7 @@
-<h2>My Current Schedule</h2>
+<div class='container text-center'>
+  <h2>My Current Schedule</h2>
 
-<% @courses.each do |course| %>
-  <%= course.course_name %>
-  <br>
-<% end %>
+  <% @courses.each do |course| %>
+    <%= course.course_name %><br>
+    <% end %>
+</div>

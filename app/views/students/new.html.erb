@@ -1,12 +1,14 @@
-<h3>Create Account</h3>
-<%= form_for(@student, url: signup_path) do |f| %>
-      <%= f.label :name %>
-      <%= f.text_field :name %>
+<div class='container text-center'>
+  <h3>Create Account</h3>
+  <%= form_for(@student, url: signup_path) do |f| %>
+        <%= f.label :name %>
+        <%= f.text_field :name %>
 
-      <%= f.label :email %>
-      <%= f.email_field :email %>
+        <%= f.label :email %>
+        <%= f.email_field :email %>
 
-      <%= f.label :password %>
-      <%= f.password_field :password %>
-      <%= f.submit "Create my account" %>
-<% end %>
+        <%= f.label :password %>
+        <%= f.password_field :password %>
+        <%= f.submit "Create my account" %>
+        <% end %>
+</div>
