@@ -2,6 +2,7 @@
   <h2>My Current Schedule</h2>
 
   <% @courses.each do |course| %>
-    <%= course.course_name %><br>
+    <%= course.course_name %>
+    <%= link_to "View Assignments", student_course_path(@student, course.id) %><br>
     <% end %>
 </div>
