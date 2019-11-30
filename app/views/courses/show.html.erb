@@ -1,3 +1,24 @@
+<nav class="navbar navbar-dark bg-primary">
+  <a class="navbar-brand" href="#">Student Planner</a>
+  <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarsExample01" aria-controls="navbarsExample01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="navbar-collapse collapse" id="navbarsExample01" style="">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <%= link_to 'Home',  student_path(@student), :class => "nav-link" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to 'Courses',  student_courses_path(@student), :class => "nav-link" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to 'Assignments',  student_assignments_path(@student), :class => "nav-link" %>
+      </li>
+    </ul>
+  </div>
+</nav>
+
 <div class='container text-center'>
   <h2> <%= @course.course_name %> </h2>
   <% @course.assignments.all.each do |assignment| %>
