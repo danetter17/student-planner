@@ -4,5 +4,7 @@
   <% @courses.each do |course| %>
     <%= course.course_name %>
     <%= link_to "View Assignments", student_course_path(@student, course.id) %><br>
-    <% end %>
+  <% end %>
+
+  <%= link_to "Add Course", new_student_course_path(@student) %>
 </div>
