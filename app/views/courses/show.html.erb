@@ -26,6 +26,8 @@
       <%= assignment.title %>, <%= assignment.course.course_name %>, <%= assignment.due_date %>
       <br>
     <% end %>
+
+    <%= link_to "Add Assignment", new_student_assignment_path(@student) %>
   </div>
 <% else %>
   <div class='container text-center'>
