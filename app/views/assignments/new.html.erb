@@ -25,12 +25,12 @@
 
   <%= form_for(@assignment, url: student_assignments_path) do |f| %>
     <%= f.hidden_field :student_id %>
+    <%= f.label "Select Course:" %>
+    <%= f.collection_select :course_id, Course.all, :id, :course_name, prompt: true %>
     <%= f.label "Title" %>
     <%= f.text_field :title %><br><br>
     <%= f.label "Due Date:" %>
     <%= f.date_select :due_date %><br><br>
-    <%= f.label "Select Course:" %>
-    <%= f.collection_select :course_id, Course.all, :id, :course_name, prompt: true %><br><br>
     <%= f.submit %>
     <% end %>
 </div>
