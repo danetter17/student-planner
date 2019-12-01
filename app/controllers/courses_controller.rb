@@ -1,4 +1,6 @@
 class CoursesController < ApplicationController
+  before_action :require_logged_in
+  
   def new
     @course = Course.new
   end

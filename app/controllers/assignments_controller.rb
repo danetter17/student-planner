@@ -1,4 +1,5 @@
 class AssignmentsController < ApplicationController
+  before_action :require_logged_in
   def new
     @assignment = Assignment.new
   end
