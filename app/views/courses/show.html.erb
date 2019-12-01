@@ -19,9 +19,16 @@
   </div>
 </nav>
 
-<div class='container text-center'>
-  <h2> <%= @course.course_name %> </h2>
-  <% @course.assignments.all.each do |assignment| %>
-    <%= assignment.title %>, <%= assignment.course.course_name %>, <%= assignment.due_date %><br>
-  <% end %>
-</div>
+<% if @course %>
+  <div class='container text-center'>
+    <h2><%= @course.course_name %></h2>
+    <% @course.assignments.all.each do |assignment| %>
+      <%= assignment.title %>, <%= assignment.course.course_name %>, <%= assignment.due_date %>
+      <br>
+    <% end %>
+  </div>
+<% else %>
+  <div class='container text-center'>
+    <p>This course has no assignments yet.</p>
+  </div>
+<% end %>

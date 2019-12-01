@@ -19,13 +19,15 @@
   </div>
 </nav>
 
-<div class='container text-center'>
-  <h2>My Current Schedule</h2>
+<div class="container-bg">
+  <div class='container text-center'>
+    <h2>My Current Schedule</h2>
 
-  <% @courses.each do |course| %>
-    <%= course.course_name %>
-    <%= link_to "View Assignments", student_course_path(@student, course.id) %><br>
-  <% end %><br>
+    <% @courses.each do |course| %>
+      <%= course.course_name %>
+      <%= link_to "View Assignments", student_course_path(@student, course.id) %><br>
+      <% end %><br>
 
-  <%= button_to "Add New Course", new_student_course_path, :class => "inbox-sf-add-btn tip", :method => :get %>
-</div>
+      <%= button_to "Add New Course", new_student_course_path, :class => "inbox-sf-add-btn tip", :method => :get %>
+    </div>
+  </div>
