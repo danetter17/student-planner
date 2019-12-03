@@ -21,6 +21,7 @@
 
 <div class='container text-center'>
   <h4><%= @assignment.title %></h4>
+  <h5>Due date: <%= @assignment.due_date %><h5>
   <%= button_to "Delete Assignment", student_assignment_path(@student), method: :delete, data: { confirm: "Really?" } %>
   <%= button_to "Edit Assignment", edit_student_assignment_path, :class => "inbox-sf-add-btn tip", :method => :get %>
 </div>
