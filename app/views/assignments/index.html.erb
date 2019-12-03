@@ -23,8 +23,10 @@
   <h2>Current Assignments</h2>
 
   <% @student.assignments.all.each do |assignment| %>
-    <%= assignment.title %>, <%= assignment.course.course_name %>, <%= assignment.due_date %>
-    <%= link_to "View/Edit Assignment", student_assignment_path(@student, assignment) %><br>
+    <% if assignment.course %>
+      <%= assignment.title %>, <%= assignment.course.course_name %>, <%= assignment.due_date %>
+      <%= link_to "View/Edit Assignment", student_assignment_path(@student, assignment) %><br>
+    <% end %>
   <% end %><br>
 
   <%= link_to "Add Assignment", new_student_assignment_path(@student) %>
