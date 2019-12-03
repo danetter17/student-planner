@@ -29,5 +29,6 @@
     <% end %>
   <% end %><br>
 
-  <%= link_to "Add Assignment", new_student_assignment_path(@student) %>
+  <%= button_to "Add New Assignment", new_student_assignment_path, :class => "inbox-sf-add-btn tip", :method => :get %>
+
 </div>
