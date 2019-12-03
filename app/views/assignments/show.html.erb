@@ -20,5 +20,6 @@
 </nav>
 
 <div class='container text-center'>
-  <%= @assignment.title %>
+  <h4><%= @assignment.title %></h4>
+  <%= link_to "Delete", student_assignment_path(@student), method: :delete, data: { confirm: "Really?" } %>
 </div>
