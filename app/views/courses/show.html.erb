@@ -27,8 +27,9 @@
       <%= link_to "View/Edit Assignment", student_assignment_path(@student, assignment) %><br><br>
     <% end %>
 
-    <%= link_to "Add Assignment", new_student_assignment_path(@student) %>
-    <%= link_to "Delete Course", student_course_path(@student), method: :delete, data: { confirm: "Really?" } %>
+    <%= button_to "Add Assignment", new_student_assignment_path(@student) %><br>
+    <%= button_to "Edit Course", edit_student_course_path, :class => "inbox-sf-add-btn tip", :method => :get %><br>
+    <%= button_to "Delete Course", student_course_path(@student), method: :delete, data: { confirm: "Really?" } %>
   </div>
 <% else %>
   <div class='container text-center'>

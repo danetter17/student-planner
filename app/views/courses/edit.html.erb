@@ -1,0 +1,5 @@
+<%= form_for(@course, url: student_course_path) do |f| %>
+  <label>Course name:</label><br>
+  <%= f.text_field :course_name %><br>
+  <%= f.submit %>
+<% end %>

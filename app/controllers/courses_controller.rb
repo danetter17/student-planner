@@ -27,9 +27,14 @@ class CoursesController < ApplicationController
   end
 
   def edit
+    @course = Course.find_by(id: params[:id])
   end
 
   def update
+    student = Student.find_by(id: params[:student_id])
+    @course = Course.find_by(id: params[:id])
+    @course.update(params.require(:course).permit(:course_name))
+    redirect_to student_course_path(student, @course)
   end
 
   def destroy
