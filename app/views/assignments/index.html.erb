@@ -24,8 +24,7 @@
 
   <% @student.assignments.all.each do |assignment| %>
     <%= assignment.title %>, <%= assignment.course.course_name %>, <%= assignment.due_date %>
-
-<br>
+    <%= link_to "View/Edit Assignment", student_assignment_path(@student, assignment) %><br>
   <% end %><br>
 
   <%= link_to "Add Assignment", new_student_assignment_path(@student) %>
