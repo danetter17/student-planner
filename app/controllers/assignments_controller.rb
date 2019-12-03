@@ -35,6 +35,12 @@ class AssignmentsController < ApplicationController
   def update
   end
 
+  def destroy
+    @assignment = Assignment.find_by(id: params[:id])
+    @assignment.destroy
+    redirect_to student_assignments_path(@student), notice: 'Assignment was successfully completed.'
+  end
+
   private
 
     def assignment_params
