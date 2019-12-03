@@ -1,6 +1,6 @@
 class CoursesController < ApplicationController
   before_action :require_logged_in
-  
+
   def new
     @course = Course.new
   end
@@ -30,6 +30,12 @@ class CoursesController < ApplicationController
   end
 
   def update
+  end
+
+  def destroy
+    @student = Student.find_by(id: params[:student_id])
+    @course = Course.find_by(id: params[:id]).destroy
+    redirect_to student_path(@student), notice: 'Course was successfully deleted.'
   end
 
   private

@@ -28,6 +28,7 @@
     <% end %>
 
     <%= link_to "Add Assignment", new_student_assignment_path(@student) %>
+    <%= link_to "Delete Course", student_course_path(@student), method: :delete, data: { confirm: "Really?" } %>
   </div>
 <% else %>
   <div class='container text-center'>
