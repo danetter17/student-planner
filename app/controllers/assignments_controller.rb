@@ -30,9 +30,14 @@ class AssignmentsController < ApplicationController
   end
 
   def edit
+    @assignment = Assignment.find_by(id: params[:id])
   end
 
   def update
+    student = Student.find_by(id: params[:student_id])
+    @assignment = Assignment.find_by(id: params[:id])
+    @assignment.update(params.require(:assignment).permit(:title, :due_date))
+    redirect_to student_assignment_path(student, @assignment)
   end
 
   def destroy
