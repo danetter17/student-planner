@@ -22,12 +22,24 @@
 <div class='container text-center'>
   <h2>Current Assignments</h2>
 
-  <% @student.assignments.all.each do |assignment| %>
-    <% if assignment.course %>
-      <%= assignment.title %>, <%= assignment.course.course_name %>, <%= assignment.due_date %>
-      <%= link_to "View/Edit Assignment", student_assignment_path(@student, assignment) %><br>
+  <table class='center'>
+    <tr>
+      <th>Title</th>
+      <th>Course Name</th>
+      <th>Due Date</th>
+      <th>View</th>
+    </tr>
+    <% @student.assignments.all.each do |assignment| %>
+      <% if assignment.course %>
+        <tr>
+          <td><%= assignment.title %></td>
+          <td><%= assignment.course.course_name %></td>
+          <td><%= assignment.due_date %></td>
+          <td><%= link_to "View/Edit Assignment", student_assignment_path(@student, assignment) %></td>
+        </tr>
+      <% end %>
     <% end %>
-  <% end %><br>
+  </table>
 
   <%= button_to "Add New Assignment", new_student_assignment_path, :class => "inbox-sf-add-btn tip", :method => :get %>
 
