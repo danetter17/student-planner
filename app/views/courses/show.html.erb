@@ -34,5 +34,7 @@
 <% else %>
   <div class='container text-center'>
     <p>This course has no assignments yet.</p>
+    <%= button_to "Add New Assignment", new_student_assignment_path, :class => "inbox-sf-add-btn tip", :method => :get %><br>
+    <%= button_to "Delete Course", student_course_path(@student), method: :delete, data: { confirm: "Really?" } %>
   </div>
 <% end %>

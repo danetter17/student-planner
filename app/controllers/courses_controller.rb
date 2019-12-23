@@ -1,5 +1,6 @@
 class CoursesController < ApplicationController
   before_action :require_logged_in
+  before_action :set_student
 
   def new
     @course = Course.new
@@ -7,6 +8,7 @@ class CoursesController < ApplicationController
 
   def create
     @course = Course.create(course_params)
+    @course.student_id = params[:student_id]
 
     if @course.save
       redirect_to student_courses_path(@student)
@@ -16,8 +18,11 @@ class CoursesController < ApplicationController
   end
 
   def index
-    student = Student.find_by(id: params[:student_id])
-    @courses = Course.all
+    if @student and @student.id == current_student.id
+      @courses = Course.where(student_id: current_student.id)
+    else
+      redirect_to student_path(current_student), error: 'Sorry, you can\'t view another Users courses.'
+    end
     #binding.pry
   end
 
@@ -47,5 +52,9 @@ class CoursesController < ApplicationController
 
     def course_params
       params.require(:course).permit(:course_name)
+    end
+
+    def set_student
+      @student = Student.find_by(id: params[:student_id])
     end
 end

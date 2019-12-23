@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   before_action :current_student
 
   def current_student
-  	@student = (Student.find_by(id: session[:student_id]) || Student.new)
+  	Student.find_by(id: session[:student_id]) || Student.new
   end
 
   def logged_in?
