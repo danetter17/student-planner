@@ -4,6 +4,7 @@ class Assignment < ActiveRecord::Base
   # accepts_nested_attributes_for :course
 
   validates :course_id, :student_id, :due_date, :title, presence: true
+  scope :due_soon, -> { where(due_date: Date.current..7.days.from_now) }
 
   def course_attributes=(attributes)
     binding.pry
