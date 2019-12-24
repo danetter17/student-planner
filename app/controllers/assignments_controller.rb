@@ -1,15 +1,16 @@
 class AssignmentsController < ApplicationController
   before_action :require_logged_in
+  before_action :set_student
+
   def new
     @assignment = Assignment.new
+    @courses = Course.where(student_id: current_student.id)
   end
 
   def create
-    #binding.pry
     @assignment = Assignment.new(assignment_params)
     @assignment.student_id = current_student.id if current_student
-    #binding.pry
-    #raise params.inspect
+
     if @assignment.save
       redirect_to student_assignments_path(@student)
     else
@@ -50,5 +51,9 @@ class AssignmentsController < ApplicationController
 
     def assignment_params
       params.require(:assignment).permit(:title, :due_date, :course_id, :student_id, course_attributes: [:course_name])
+    end
+
+    def set_student
+      @student = Student.find_by(id: params[:student_id])
     end
 end

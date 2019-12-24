@@ -18,7 +18,7 @@ class CoursesController < ApplicationController
   end
 
   def index
-    if @student and @student.id == current_student.id
+    if @student && @student.id == current_student.id
       @courses = Course.where(student_id: current_student.id)
     else
       redirect_to student_path(current_student), error: 'Sorry, you can\'t view another Users courses.'
