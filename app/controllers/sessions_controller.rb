@@ -17,4 +17,17 @@ class SessionsController < ApplicationController
 		session.delete :student_id
 		redirect_to root_path
 	end
+
+	def omniauth
+    @student = Student.from_omniauth(auth)
+    @student.save
+    session[:student_id] = @student.id
+		redirect_to student_path(@student)
+  end
+
+  private
+
+  	def auth
+    	request.env['omniauth.auth']
+  	end
 end
