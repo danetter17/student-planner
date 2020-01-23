@@ -23,7 +23,6 @@ class CoursesController < ApplicationController
     else
       redirect_to student_path(current_student), error: 'Sorry, you can\'t view another Users courses.'
     end
-    #binding.pry
   end
 
   def show

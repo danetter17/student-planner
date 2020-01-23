@@ -19,9 +19,6 @@ class AssignmentsController < ApplicationController
   end
 
   def index
-    #@student = Student.find_by(id: params[:student_id])
-    #@assignments = Assignment.where(student_id: params[:student_id])
-    #binding.pry
     if @student && @student.id == current_student.id
       @assignments = Assignment.where(student_id: current_student.id)
     else
@@ -32,7 +29,6 @@ class AssignmentsController < ApplicationController
   def show
     student = Student.find_by(id: params[:student_id])
     @assignment = student.assignments.find_by(id: params[:id])
-    #binding.pry
   end
 
   def edit
