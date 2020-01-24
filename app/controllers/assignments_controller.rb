@@ -10,6 +10,7 @@ class AssignmentsController < ApplicationController
   def create
     @assignment = Assignment.new(assignment_params)
     @assignment.student_id = current_student.id if current_student
+    @courses = Course.where(student_id: current_student.id)
 
     if @assignment.save
       redirect_to student_assignments_path(@student)

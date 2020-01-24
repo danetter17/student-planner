@@ -12,8 +12,8 @@
     <% end %><br>
     <%= f.hidden_field :student_id %>
     <%= f.label "Select Course:" %>
-    <%= f.collection_select :course_id, @courses, :id, :course_name, prompt: false %>
-    <%= f.label "Title" %>
+    <%= f.collection_select :course_id, @courses, :id, :course_name, prompt: false %><br><br>
+    <%= f.label "Title" %><br>
     <%= f.text_field :title %><br><br>
     <%= f.label "Due Date:" %>
     <%= f.date_select :due_date %><br><br>
