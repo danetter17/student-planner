@@ -1,0 +1,16 @@
+<div class='container text-center'>
+  <div class='container text-center'>
+    <h3>Edit Profile</h3>
+    <%= form_for(@student, url: signup_path) do |f| %>
+          <%= f.label :email %>
+          <%= f.email_field :email %><br>
+
+          <%= f.label :password %>
+          <%= f.password_field :password %><br>
+          <%= f.submit "Update Profile" %>
+    <% end %>
+  </div>
+
+
+  <a href="/logout">Logout</a>
+</div>
