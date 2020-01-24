@@ -3,10 +3,24 @@
 <% if @course %>
   <div class='container text-center'>
     <h2><%= @course.course_name %></h2>
-    <% @course.assignments.all.each do |assignment| %>
-      <%= assignment.title %>, <%= assignment.course.course_name %>, <%= assignment.due_date %>
-      <%= link_to "View/Edit Assignment", student_assignment_path(@student, assignment) %><br><br>
-    <% end %>
+    <table class='center'>
+      <tr>
+        <th>Assignment Title</th>
+        <th>Course Name</th>
+        <th>Due Date</th>
+        <th>View</th>
+      </tr>
+      <% @course.assignments.all.each do |assignment| %>
+        <% if assignment.course %>
+          <tr>
+            <td><%= assignment.title %></td>
+            <td><%= assignment.course.course_name %></td>
+            <td><%= assignment.due_date %></td>
+            <td><%= link_to "View/Edit Assignment", student_assignment_path(@student, assignment) %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </table><br>
 
     <%= button_to "Add New Assignment", new_student_assignment_path, :class => "inbox-sf-add-btn tip", :method => :get %><br>
     <%= button_to "Edit Course", edit_student_course_path, :class => "inbox-sf-add-btn tip", :method => :get %><br>

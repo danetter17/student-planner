@@ -11,7 +11,7 @@ class StudentsController < ApplicationController
       session[:student_id] = @student.id
   		redirect_to student_path(@student)
 	  else
-      redirect_to root_path
+      render :new
     end
 	end
 
