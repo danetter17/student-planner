@@ -2,7 +2,7 @@
 
 <% if @course %>
   <div class='container text-center'>
-    <h2><%= @course.course_name %></h2>
+    <br><h2><%= @course.course_name %></h2><br>
     <table class='center'>
       <tr>
         <th>Assignment Title</th>
@@ -20,16 +20,17 @@
           </tr>
         <% end %>
       <% end %>
-    </table><br>
+    </table><br><br>
 
     <%= button_to "Add New Assignment", new_student_assignment_path, :class => "inbox-sf-add-btn tip", :method => :get %><br>
     <%= button_to "Edit Course", edit_student_course_path, :class => "inbox-sf-add-btn tip", :method => :get %><br>
-    <%= button_to "Delete Course", student_course_path(@student), method: :delete, data: { confirm: "Really?" } %>
+    <%= button_to "Delete Course", student_course_path(@student), method: :delete, data: { confirm: "Remove course from your schedule? This will also remove all assignments from this course." } %>
   </div>
 <% else %>
   <div class='container text-center'>
     <p>This course has no assignments yet.</p>
     <%= button_to "Add New Assignment", new_student_assignment_path, :class => "inbox-sf-add-btn tip", :method => :get %><br>
-    <%= button_to "Delete Course", student_course_path(@student), method: :delete, data: { confirm: "Really?" } %>
+    <%= button_to "Edit Course", edit_student_course_path, :class => "inbox-sf-add-btn tip", :method => :get %><br>
+    <%= button_to "Delete Course", student_course_path(@student), method: :delete, data: { confirm: "Remove course from your schedule? This will also remove all assignments from this course." } %>
   </div>
 <% end %>

@@ -33,10 +33,10 @@
     <% @student.assignments.due_soon.each do |assignment| %>
       <tr>
         <td><%= assignment.title %></td>
-        <td><%= assignment.due_date %></td><br>
+        <td><%= assignment.due_date %></td>
       </tr>
-    <% end %><br>
+    <% end %>
   </table><br>
 
-  <%= button_to "Add New Assignment", new_student_assignment_path, :class => "inbox-sf-add-btn tip", :method => :get %>
+  <%= button_to "Add New Assignment", new_student_assignment_path, :class => "inbox-sf-add-btn tip", :method => :get %><br><br>
 </div>

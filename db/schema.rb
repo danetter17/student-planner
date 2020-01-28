@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2019_12_22_051823) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "assignments", force: :cascade do |t|
     t.string "title"
     t.date "due_date"
@@ -21,7 +24,7 @@ ActiveRecord::Schema.define(version: 2019_12_22_051823) do
 
   create_table "courses", force: :cascade do |t|
     t.string "course_name"
-    t.integer "student_id"
+    t.bigint "student_id"
     t.index ["student_id"], name: "index_courses_on_student_id"
   end
 

@@ -13,4 +13,10 @@ class ApplicationController < ActionController::Base
   def require_logged_in
     return redirect_to(controller: 'sessions', action: 'new') unless logged_in?
   end
+
+  def check_owner
+    if @student.blank? || @student.id != current_student.id
+      redirect_to student_path(current_student), error: 'Sorry, you can\'t view another Users resources.'
+    end
+  end
 end

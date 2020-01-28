@@ -1,9 +1,12 @@
 <%= render "partials/navbar" %>
 
 <div class='container text-center'>
-  <%= form_for(@course, url: student_course_path) do |f| %>
-    <label>Course name:</label><br>
+  <br><h3>Edit Course Form</h3><br>
+</div>
+
+<div class='container text-center'>
+  <%= bootstrap_form_for(@course, url: student_course_path) do |f| %>
     <%= f.text_field :course_name %><br><br>
-    <%= f.submit %>
+    <%= f.primary %>
     <% end %>
 </div>

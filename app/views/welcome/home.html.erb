@@ -1,6 +1,17 @@
 <div class='container text-center'>
-  <h1>Welcome to your Student Planner!</h1>
-  <h3><%= link_to "Sign Up/Log In with Google", '/auth/google_oauth2' %></h3>
-  <h2> - OR - </h2>
-  <h3>Please <a href="/login">Log In</a>/<a href="/signup">Sign Up</a> the old fashioned way to continue</h3>
+  <br><h1>Welcome to your Student Planner!</h1><br>
+</div>
+
+<div class="container text-center">
+  <div class="row">
+    <div class="col-sm">
+      <h3><%= link_to "Log In/Sign Up with Google", '/auth/google_oauth2' %></h3>
+    </div>
+    <div class="col-sm">
+      <%= image_tag("logos/logo.png") %>
+    </div>
+    <div class="col-sm">
+      <h3><a href="/login">Log In</a>/<a href="/signup">Sign Up</a> the old fashioned way</h3>
+    </div>
+  </div>
 </div>

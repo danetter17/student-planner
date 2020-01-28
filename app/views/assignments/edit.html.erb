@@ -1,13 +1,14 @@
 <%= render "partials/navbar" %>
 
 <div class='container text-center'>
-  <%= form_for(@assignment, url: student_assignment_path) do |f| %>
-    <label>Assignment Title:</label><br>
+  <br><h3>Edit Assignment Form</h3><br>
+</div>
+<div class='container text-center'>
+  <%= bootstrap_form_for(@assignment, url: student_assignment_path) do |f| %>
     <%= f.text_field :title %><br>
 
-    <label>Due date:</label><br>
     <%= f.date_select :due_date %><br><br>
 
-    <%= f.submit %>
+    <%= f.primary %>
   <% end %>
 </div>

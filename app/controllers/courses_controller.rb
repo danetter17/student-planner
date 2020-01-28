@@ -1,19 +1,28 @@
 class CoursesController < ApplicationController
   before_action :require_logged_in
   before_action :set_student
+  before_action :check_owner
 
   def new
-    @course = Course.new
+    if @student && @student.id == current_student.id
+      @course = Course.new
+    else
+      redirect_to student_path(current_student), error: 'Sorry, you can\'t view another Users courses.'
+    end
   end
 
   def create
-    @course = Course.create(course_params)
-    @course.student_id = params[:student_id]
+    if @student && @student.id == current_student.id
+      @course = Course.create(course_params)
+      @course.student_id = params[:student_id]
 
-    if @course.save
-      redirect_to student_courses_path(@student)
+      if @course.save
+        redirect_to student_courses_path(@student)
+      else
+        render :new
+      end
     else
-      render :new
+      redirect_to student_path(current_student), error: 'Sorry, you can\'t view another Users courses.'
     end
   end
 
@@ -26,12 +35,24 @@ class CoursesController < ApplicationController
   end
 
   def show
-    student = Student.find_by(id: params[:student_id])
-    @course = student.courses.find_by(id: params[:id])
+    #@student = Student.find_by(id: params[:student_id])
+    #if @student && @student.id == current_student.id
+    @course = Course.find(params[:id])
+    if current_student.id == @course.student_id
+      @course = Course.find(params[:id])
+    else
+      redirect_to student_path(current_student), error: 'Sorry, you can\'t view another Users courses.'
+    end
   end
 
   def edit
-    @course = Course.find_by(id: params[:id])
+    #if @student && @student.id == current_student.id
+    @course = Course.find(params[:id])
+    if current_student.id == @course.student_id
+      @course = Course.find_by(id: params[:id])
+    else
+      redirect_to student_path(current_student), error: 'Sorry, you can\'t view another Users courses.'
+    end
   end
 
   def update

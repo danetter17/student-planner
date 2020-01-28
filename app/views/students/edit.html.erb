@@ -1,13 +1,13 @@
+<%= render "partials/navbar" %>
+
 <div class='container text-center'>
   <div class='container text-center'>
-    <h3>Edit Profile</h3>
-    <%= form_for(@student, url: signup_path) do |f| %>
-          <%= f.label :email %>
+    <h3>Use the form below to create a new email and/or password</h3>
+    <%= bootstrap_form_for(@student, url: signup_path) do |f| %>
           <%= f.email_field :email %><br>
 
-          <%= f.label :password %>
           <%= f.password_field :password %><br>
-          <%= f.submit "Update Profile" %>
+          <%= f.primary "Update Profile" %>
     <% end %>
   </div>
 

@@ -1,10 +1,15 @@
 class AssignmentsController < ApplicationController
   before_action :require_logged_in
   before_action :set_student
+  before_action :check_owner
 
   def new
-    @assignment = Assignment.new
-    @courses = Course.where(student_id: current_student.id)
+    if @student && @student.id == current_student.id
+      @assignment = Assignment.new
+      @courses = Course.where(student_id: current_student.id)
+    else
+      redirect_to student_path(current_student), error: 'Sorry, you can\'t view another Users assignments.'
+    end
   end
 
   def create
@@ -28,24 +33,34 @@ class AssignmentsController < ApplicationController
   end
 
   def show
-    student = Student.find_by(id: params[:student_id])
-    @assignment = student.assignments.find_by(id: params[:id])
+    @assignment = Assignment.find(params[:id])
+    if current_student.id == @assignment.student_id
+      @assignment = Assignment.find(params[:id])
+    else
+      redirect_to student_path(current_student)
+    end
   end
 
   def edit
-    @assignment = Assignment.find_by(id: params[:id])
+    @assignment = Assignment.find(params[:id])
+    if current_student.id == @assignment.student_id
+      #@assignment = @student.assignments.find_by(id: params[:id])
+      @assignment = Assignment.find(params[:id])
+    else
+      redirect_to student_path(current_student), error: 'Sorry, you can\'t view another Users assignments.'
+    end
   end
 
   def update
     student = Student.find_by(id: params[:student_id])
-    @assignment = Assignment.find_by(id: params[:id])
+    @assignment = @student.assignments.find_by(id: params[:id])
     @assignment.update(params.require(:assignment).permit(:title, :due_date))
     redirect_to student_assignment_path(student, @assignment)
   end
 
   def destroy
     @student = Student.find_by(id: params[:student_id])
-    @assignment = Assignment.find_by(id: params[:id]).destroy
+    @assignment = @student.assignments.find_by(id: params[:id]).destroy
     redirect_to student_path(@student), notice: 'Assignment was successfully completed.'
   end
 

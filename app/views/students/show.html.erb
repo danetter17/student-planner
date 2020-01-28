@@ -2,7 +2,7 @@
 
 <div class='container text-center'>
   <h1><%= @student.name %>'s User Dashboard</h1>
-  <br>
+  <p>***REMEMBER if you used Google for signing up to reset your password <%= link_to "here", edit_student_path(@student) %>***<br>
 
   <h3>Assignment List</h3>
   <%= link_to "View Assignments", student_assignments_path(@student) %>

@@ -1,7 +1,7 @@
 <%= render "partials/navbar" %>
 
 <div class='container text-center'>
-  <h4><%= @assignment.title %></h4>
+  <br><h4><%= @assignment.title %></h4>
   <h5>Due date: <%= @assignment.due_date %><h5><br>
   <%= button_to "Delete Assignment", student_assignment_path(@student), method: :delete, data: { confirm: "#{@assignment.title} completed?" } %><br>
   <%= button_to "Edit Assignment", edit_student_assignment_path, :method => :get %>
