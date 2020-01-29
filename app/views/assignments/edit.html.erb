@@ -6,6 +6,8 @@
 <div class='container text-center'>
   <%= bootstrap_form_for(@assignment, url: student_assignment_path) do |f| %>
     <%= f.text_field :title %><br>
+    
+    <%= f.text_area :assignment_details %><br><br>
 
     <%= f.date_select :due_date %><br><br>
 

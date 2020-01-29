@@ -54,7 +54,7 @@ class AssignmentsController < ApplicationController
   def update
     student = Student.find_by(id: params[:student_id])
     @assignment = @student.assignments.find_by(id: params[:id])
-    @assignment.update(params.require(:assignment).permit(:title, :due_date))
+    @assignment.update(params.require(:assignment).permit(:title, :due_date, :assignment_details))
     redirect_to student_assignment_path(student, @assignment)
   end
 
@@ -67,7 +67,7 @@ class AssignmentsController < ApplicationController
   private
 
     def assignment_params
-      params.require(:assignment).permit(:title, :due_date, :course_id, :student_id)
+      params.require(:assignment).permit(:title, :due_date, :assignment_details, :course_id, :student_id)
     end
 
     def set_student

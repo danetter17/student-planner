@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 2019_12_22_051823) do
   create_table "assignments", force: :cascade do |t|
     t.string "title"
     t.date "due_date"
+    t.text "assignment_details"
     t.integer "student_id"
     t.integer "course_id"
   end
