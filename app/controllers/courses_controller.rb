@@ -7,7 +7,7 @@ class CoursesController < ApplicationController
     if @student && @student.id == current_student.id
       @course = Course.new
     else
-      redirect_to student_path(current_student), error: 'Sorry, you can\'t view another Users courses.'
+      redirect_to student_path(current_student)
     end
   end
 
@@ -22,7 +22,7 @@ class CoursesController < ApplicationController
         render :new
       end
     else
-      redirect_to student_path(current_student), error: 'Sorry, you can\'t view another Users courses.'
+      redirect_to student_path(current_student)
     end
   end
 
@@ -30,28 +30,25 @@ class CoursesController < ApplicationController
     if @student && @student.id == current_student.id
       @courses = Course.where(student_id: current_student.id)
     else
-      redirect_to student_path(current_student), error: 'Sorry, you can\'t view another Users courses.'
+      redirect_to student_path(current_student)
     end
   end
 
   def show
-    #@student = Student.find_by(id: params[:student_id])
-    #if @student && @student.id == current_student.id
     @course = Course.find(params[:id])
     if current_student.id == @course.student_id
       @course = Course.find(params[:id])
     else
-      redirect_to student_path(current_student), error: 'Sorry, you can\'t view another Users courses.'
+      redirect_to student_path(current_student)
     end
   end
 
   def edit
-    #if @student && @student.id == current_student.id
     @course = Course.find(params[:id])
     if current_student.id == @course.student_id
       @course = Course.find_by(id: params[:id])
     else
-      redirect_to student_path(current_student), error: 'Sorry, you can\'t view another Users courses.'
+      redirect_to student_path(current_student)
     end
   end
 
@@ -65,7 +62,7 @@ class CoursesController < ApplicationController
   def destroy
     @student = Student.find_by(id: params[:student_id])
     @course = Course.find_by(id: params[:id]).destroy
-    redirect_to student_path(@student), notice: 'Course was successfully deleted.'
+    redirect_to student_path(@student)
   end
 
   private

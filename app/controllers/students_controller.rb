@@ -16,11 +16,10 @@ class StudentsController < ApplicationController
 	end
 
   def show
-    #binding.pry
     @student = Student.find_by(id: params[:id])
     if logged_in? and @student
       unless current_student.id == @student.id
-        redirect_to student_path(current_student), error: 'Sorry, you can\'t view another Users profile.'
+        redirect_to student_path(current_student)
       end
     else
       redirect_to root_path
@@ -31,7 +30,7 @@ class StudentsController < ApplicationController
     @student = Student.find_by(id: params[:id])
     if logged_in? and @student
       unless current_student.id == @student.id
-        redirect_to student_path(current_student), error: 'Sorry, you can\'t view another Users profile.'
+        redirect_to student_path(current_student)
       end
     else
       redirect_to root_path

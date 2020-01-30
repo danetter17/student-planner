@@ -8,7 +8,7 @@ class AssignmentsController < ApplicationController
       @assignment = Assignment.new
       @courses = Course.where(student_id: current_student.id)
     else
-      redirect_to student_path(current_student), error: 'Sorry, you can\'t view another Users assignments.'
+      redirect_to student_path(current_student)
     end
   end
 
@@ -28,7 +28,7 @@ class AssignmentsController < ApplicationController
     if @student && @student.id == current_student.id
       @assignments = Assignment.where(student_id: current_student.id)
     else
-      redirect_to student_path(current_student), error: 'Sorry, you can\'t view another Users assignments.'
+      redirect_to student_path(current_student)
     end
   end
 
@@ -44,10 +44,9 @@ class AssignmentsController < ApplicationController
   def edit
     @assignment = Assignment.find(params[:id])
     if current_student.id == @assignment.student_id
-      #@assignment = @student.assignments.find_by(id: params[:id])
       @assignment = Assignment.find(params[:id])
     else
-      redirect_to student_path(current_student), error: 'Sorry, you can\'t view another Users assignments.'
+      redirect_to student_path(current_student)
     end
   end
 
@@ -61,7 +60,7 @@ class AssignmentsController < ApplicationController
   def destroy
     @student = Student.find_by(id: params[:student_id])
     @assignment = @student.assignments.find_by(id: params[:id]).destroy
-    redirect_to student_path(@student), notice: 'Assignment was successfully completed.'
+    redirect_to student_path(@student)
   end
 
   private
