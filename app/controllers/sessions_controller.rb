@@ -19,12 +19,13 @@ class SessionsController < ApplicationController
 	end
 
 	def omniauth
-		@student = Student.find_or_create_by(uid: auth['uid']) do |u|
+		@student = Student.find_or_create_by(email: auth['info']['email']) do |u|
+			u.uid = auth['uid']
 			u.name = auth['info']['name']
 			u.email = auth['info']['email']
 			u.password = "password"
 		end
-
+		#binding.pry
     session[:student_id] = @student.id
 		redirect_to student_path(@student)
   end

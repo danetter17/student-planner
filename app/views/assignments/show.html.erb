@@ -5,21 +5,15 @@
 
   <table class='table table-bordered table-hover center'>
     <tr>
-      <th>Title</th>
       <th>Course Name</th>
       <th>Due Date</th>
       <th>Details</th>
     </tr>
-    <% @student.assignments.all.each do |assignment| %>
-      <% if assignment.course %>
-        <tr>
-          <td><%= assignment.title %></td>
-          <td><%= assignment.course.course_name %></td>
-          <td><%= assignment.due_date %></td>
-          <td><%= assignment.assignment_details %></td>
-        </tr>
-      <% end %>
-    <% end %>
+    <tr>
+      <td><%= @assignment.course.course_name %></td>
+      <td><%= @assignment.due_date %></td>
+      <td><%= @assignment.assignment_details %></td>
+    </tr>
   </table><br><br><br>
   <%= button_to "Delete Assignment", student_assignment_path(@student), method: :delete, data: { confirm: "#{@assignment.title} completed?" } %><br>
   <%= button_to "Edit Assignment", edit_student_assignment_path, :method => :get %>
