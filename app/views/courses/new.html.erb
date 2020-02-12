@@ -6,11 +6,6 @@
   <div class="col-sm">
   </div>
   <%= bootstrap_form_for(@course, url: student_courses_path) do |f| %>
-    <% if @course.errors.any? %>
-      <% @course.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    <% end %><br>
     <%= f.text_field :course_name %><br><br>
     <%= f.primary %>
     <% end %>

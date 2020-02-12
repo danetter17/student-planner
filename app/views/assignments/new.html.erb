@@ -5,11 +5,6 @@
   <h3>To add an assignment to your planner, please select or <a href="<%= new_student_course_path %>">create</a> a course first</h3>
 
   <%= bootstrap_form_for(@assignment, url: student_assignments_path) do |f| %>
-    <% if @assignment.errors.any? %>
-      <% @assignment.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    <% end %><br>
     <%= f.hidden_field :student_id %>
     <%= f.collection_select :course_id, @courses, :id, :course_name, prompt: false %><br>
     <%= f.text_field :title %><br>

@@ -4,9 +4,9 @@ class AssignmentsController < ApplicationController
   before_action :check_owner
 
   def new
-    if @student && @student.id == current_student.id
+    if student_exists_and_correct
       @assignment = Assignment.new
-      @courses = Course.where(student_id: current_student.id)
+      pickable_courses
     else
       redirect_to student_path(current_student)
     end
@@ -15,7 +15,7 @@ class AssignmentsController < ApplicationController
   def create
     @assignment = Assignment.new(assignment_params)
     @assignment.student_id = current_student.id if current_student
-    @courses = Course.where(student_id: current_student.id)
+    pickable_courses
 
     if @assignment.save
       redirect_to student_assignments_path(@student)
@@ -25,7 +25,7 @@ class AssignmentsController < ApplicationController
   end
 
   def index
-    if @student && @student.id == current_student.id
+    if student_exists_and_correct
       @assignments = Assignment.where(student_id: current_student.id)
     else
       redirect_to student_path(current_student)
@@ -33,33 +33,23 @@ class AssignmentsController < ApplicationController
   end
 
   def show
-    @assignment = Assignment.find(params[:id])
-    if current_student.id == @assignment.student_id
-      @assignment = Assignment.find(params[:id])
-    else
-      redirect_to student_path(current_student)
-    end
+    verify_assignment
   end
 
   def edit
-    @assignment = Assignment.find(params[:id])
-    if current_student.id == @assignment.student_id
-      @assignment = Assignment.find(params[:id])
-    else
-      redirect_to student_path(current_student)
-    end
+    verify_assignment
   end
 
   def update
-    student = Student.find_by(id: params[:student_id])
-    @assignment = @student.assignments.find_by(id: params[:id])
+    set_student
+    set_assignment
     @assignment.update(params.require(:assignment).permit(:title, :due_date, :assignment_details))
-    redirect_to student_assignment_path(student, @assignment)
+    redirect_to student_assignment_path(@student, @assignment)
   end
 
   def destroy
-    @student = Student.find_by(id: params[:student_id])
-    @assignment = @student.assignments.find_by(id: params[:id]).destroy
+    set_student
+    set_assignment.destroy
     redirect_to student_path(@student)
   end
 
@@ -69,7 +59,32 @@ class AssignmentsController < ApplicationController
       params.require(:assignment).permit(:title, :due_date, :assignment_details, :course_id, :student_id)
     end
 
+    def find_assignment
+      Assignment.find_by(id: params[:id])
+    end
+
+    def set_assignment
+      @assignment = Assignment.find(params[:id])
+    end
+
     def set_student
       @student = Student.find_by(id: params[:student_id])
+    end
+
+    def verify_assignment
+      if find_assignment
+        set_assignment
+        if current_student.id == @assignment.student_id
+          set_assignment
+        else
+          redirect_to student_path(current_student)
+        end
+      else
+        redirect_to student_path(current_student)
+      end
+    end
+
+    def pickable_courses
+      @courses = Course.where(student_id: current_student.id)
     end
 end

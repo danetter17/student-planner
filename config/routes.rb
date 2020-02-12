@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get '/logout',  to: 'sessions#destroy'
   get '/auth/:provider/callback' => 'sessions#omniauth'
 
-  resources :students
+  resources :students, except: [:index]
 
   resources :students, only: [:show] do
     resources :assignments

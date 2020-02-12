@@ -19,4 +19,8 @@ class ApplicationController < ActionController::Base
       redirect_to student_path(current_student), error: 'Sorry, you can\'t view another Users resources.'
     end
   end
+
+  def student_exists_and_correct
+    @student && @student.id == current_student.id
+  end
 end

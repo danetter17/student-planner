@@ -20,25 +20,11 @@ class StudentsController < ApplicationController
   end
 
   def show
-    @student = Student.find_by(id: params[:id])
-    if logged_in? and @student
-      unless current_student.id == @student.id
-        redirect_to student_path(current_student)
-      end
-    else
-      redirect_to root_path
-    end
+    set_student_if_correct
   end
 
   def edit
-    @student = Student.find_by(id: params[:id])
-    if logged_in? and @student
-      unless current_student.id == @student.id
-        redirect_to student_path(current_student)
-      end
-    else
-      redirect_to root_path
-    end
+    set_student_if_correct
   end
 
   def update
@@ -47,9 +33,33 @@ class StudentsController < ApplicationController
     redirect_to student_path(@student)
   end
 
+  def destroy
+    set_student.destroy
+    redirect_to root_path
+  end
+
   private
 
     def student_params
 		  params.require(:student).permit(:name, :email, :password)
 	  end
+
+    def set_student
+      @student = Student.find_by(id: params[:id])
+    end
+
+    def correct_student
+      if logged_in? and @student
+        unless current_student.id == @student.id
+          redirect_to student_path(current_student)
+        end
+      else
+        redirect_to student_path(current_student)
+      end
+    end
+
+    def set_student_if_correct
+      @student = Student.find_by(id: params[:id])
+      correct_student
+    end
 end
