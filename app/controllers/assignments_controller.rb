@@ -27,6 +27,7 @@ class AssignmentsController < ApplicationController
   def index
     if student_exists_and_correct
       @assignments = Assignment.where(student_id: current_student.id)
+      @assignments_due_soon = @student.assignments.due_soon
     else
       redirect_to student_path(current_student)
     end

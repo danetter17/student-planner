@@ -13,7 +13,9 @@ Rails.application.routes.draw do
   resources :students, only: [:show] do
     resources :assignments
     resources :courses
+    resources :categories
   end
+
 
   root 'welcome#home'
 end

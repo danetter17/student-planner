@@ -30,7 +30,7 @@
       <th>Title</th>
       <th>Due Date</th>
     </tr>
-    <% @student.assignments.due_soon.each do |assignment| %>
+    <% @assignments_due_soon.each do |assignment| %>
       <tr>
         <td><%= assignment.title %></td>
         <td><%= assignment.due_date %></td>
