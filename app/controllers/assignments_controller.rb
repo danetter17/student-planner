@@ -7,6 +7,7 @@ class AssignmentsController < ApplicationController
     if student_exists_and_correct
       @assignment = Assignment.new
       pickable_courses
+      pickable_categories
     else
       redirect_to student_path(current_student)
     end
@@ -16,6 +17,7 @@ class AssignmentsController < ApplicationController
     @assignment = Assignment.new(assignment_params)
     @assignment.student_id = current_student.id if current_student
     pickable_courses
+    pickable_categories
 
     if @assignment.save
       redirect_to student_assignments_path(@student)
@@ -57,7 +59,7 @@ class AssignmentsController < ApplicationController
   private
 
     def assignment_params
-      params.require(:assignment).permit(:title, :due_date, :assignment_details, :course_id, :student_id)
+      params.require(:assignment).permit(:title, :due_date, :assignment_details, :course_id, :category_id, :student_id)
     end
 
     def find_assignment
@@ -87,5 +89,9 @@ class AssignmentsController < ApplicationController
 
     def pickable_courses
       @courses = Course.where(student_id: current_student.id)
+    end
+
+    def pickable_categories
+      @categories = Category.where(student_id: current_student.id)
     end
 end

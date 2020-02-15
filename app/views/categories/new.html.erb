@@ -1,6 +1,13 @@
-<h3> Create a new category! </h3>
+<%= render "partials/navbar" %>
 
-<%= bootstrap_form_for(@category, url: student_categories_path) do |f| %>
-  <%= f.text_field :title %><br>
-  <%= f.primary %>
-  <% end %>
+<div class='container text-center'>
+  <h2>Add A Category</h2>
+  <div class="col-sm">
+  </div>
+  <%= bootstrap_form_for(@category, url: student_categories_path) do |f| %>
+    <%= f.text_field :title %><br><br>
+    <%= f.primary %>
+    <% end %>
+  <div class="col-sm">
+  </div>
+</div>

@@ -1,6 +1,8 @@
 class Student < ActiveRecord::Base
   has_many :assignments
   has_many :courses, through: :assignments
+  has_many :categories, through: :assignments
+
   has_secure_password
 
   validates :name, :email, presence: true

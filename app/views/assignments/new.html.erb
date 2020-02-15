@@ -2,14 +2,15 @@
 
 <div class='container text-center'>
   <h2>New Assignment Form</h2>
-  <h3>To add an assignment to your planner, please select or <a href="<%= new_student_course_path %>">create</a> a course first</h3>
+  <h3>To add an assignment to your planner, please create(or select) the <a href="<%= new_student_course_path %>">course</a> and <a href="<%= new_student_category_path %>">category</a></h3>
 
   <%= bootstrap_form_for(@assignment, url: student_assignments_path) do |f| %>
     <%= f.hidden_field :student_id %>
     <%= f.collection_select :course_id, @courses, :id, :course_name, prompt: false %><br>
+    <%= f.collection_select :category_id, @categories, :id, :title, prompt: false %><br>
     <%= f.text_field :title %><br>
     <%= f.date_select :due_date %>
     <%= f.text_area :assignment_details %>
     <%= f.primary %>
     <% end %>
-</div>
+</div><br><br>
