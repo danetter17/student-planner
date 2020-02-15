@@ -1,0 +1,12 @@
+<%= render "partials/navbar" %>
+
+<div class='container text-center'>
+  <br><h3>Edit Category Form</h3><br>
+</div>
+
+<div class='container text-center'>
+  <%= bootstrap_form_for(@category, url: student_category_path) do |f| %>
+    <%= f.text_field :title %><br><br>
+    <%= f.primary %>
+    <% end %>
+</div>

@@ -22,7 +22,30 @@ class CategoriesController < ApplicationController
   end
 
   def show
+    verify_category
+  end
+
+  def index
+    if student_exists_and_correct
+      @categories = Category.where(student_id: current_student.id)
+    else
+      redirect_to student_path(current_student)
+    end
+  end
+
+  def edit
+    verify_category
+  end
+
+  def update
     set_category
+    @category.update(params.require(:category).permit(:title))
+    redirect_to student_category_path(@student, @category)
+  end
+
+  def destroy
+    set_category.destroy
+    redirect_to student_path(@student)
   end
 
   private
@@ -41,5 +64,18 @@ class CategoriesController < ApplicationController
 
     def set_category
       @category = Category.find_by(id: params[:id])
+    end
+
+    def verify_category
+      if find_category
+        set_category
+        if current_student.id == @category.student_id
+          set_category
+        else
+          redirect_to student_path(current_student)
+        end
+      else
+        redirect_to student_path(current_student)
+      end
     end
 end

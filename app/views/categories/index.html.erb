@@ -1,0 +1,20 @@
+<%= render "partials/navbar" %>
+
+  <div class='container text-center'>
+    <h2>Assignment Categories</h2>
+
+    <table class='center table-bordered table-hover'>
+      <tr>
+        <th>Category Name</th>
+        <th>View</th>
+      </tr>
+      <% @categories.each do |category| %>
+        <tr>
+          <td><%= category.title %></td>
+          <td><%= link_to "View/Edit Category", student_category_path(@student, category.id) %></td>
+        </tr>
+      <% end %>
+    </table><br>
+
+    <%= button_to "Add New Category", new_student_category_path, :class => "inbox-sf-add-btn tip", :method => :get %>
+  </div>
