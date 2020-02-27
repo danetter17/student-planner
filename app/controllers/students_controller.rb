@@ -21,6 +21,13 @@ class StudentsController < ApplicationController
 
   def show
     set_student_if_correct
+    if student_exists_and_correct
+      @assignments = Assignment.where(student_id: current_student.id)
+      @courses = Course.where(student_id: current_student.id)
+      @assignments_due_soon = @student.assignments.due_soon
+    else
+      redirect_to student_path(current_student)
+    end
   end
 
   def edit
